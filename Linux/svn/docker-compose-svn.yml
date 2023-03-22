@@ -1,0 +1,13 @@
+version: '3'
+services:
+  svn:
+    image: 'elleflorio/svn-server:latest'
+    restart: always
+    privileged: true
+    container_name: svn-server
+    ports:
+      - '9004:80'   # httpd 服务端口
+      - '9003:3690' # svn 服务端口 
+    volumes:
+      - '/home/docker/docker-config/svn/conf:/etc/subversion/'
+      - '/home/docker/docker-config/svn/repo:/home/svn'
