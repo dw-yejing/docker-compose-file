@@ -1,0 +1,13 @@
+version: '3'
+services:
+  kettle:
+    image: 'hiromuhota/webspoon'
+    restart: always
+    privileged: true
+    container_name: kettle-web
+    ports:
+      - '9009:8080'   
+    volumes:
+      - '/home/docker/app/kettle/spoon/WEB-INF:/usr/local/tomcat/webapps/spoon/WEB-INF'
+      - '/home/docker/app/kettle/tomcat/bin:/usr/local/tomcat/bin'
+      - '/home/docker/app/kettle/data:/home/tomcat/.kettle/data'

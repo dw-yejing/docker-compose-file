@@ -1,0 +1,21 @@
+version: '3'
+services:
+  gitlab:
+    image: 'gitlab/gitlab-ce:latest'
+    restart: always
+    privileged: true
+    container_name: gitlab
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://192.168.113.48:9010' 
+        gitlab_rails['gitlab_shell_ssh_port'] = 9011
+    ports:
+      - '9010:9010'
+      - '9011:22'
+    volumes:
+      #将相关配置映射到当前目录下的config目录
+      - '/home/docker/app/gitlab/config:/etc/gitlab'
+      #将日志映射到当前目录下的logs目录
+      - '/home/docker/app/gitlab/logs:/var/log/gitlab'
+      #将数据映射到当前目录下的data目录
+      - '/home/docker/app/gitlab/data:/var/opt/gitlab'

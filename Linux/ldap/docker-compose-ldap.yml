@@ -1,0 +1,30 @@
+version: "3"
+services:
+  # 1.安装openldap
+  openldap:
+    image: osixia/openldap:latest
+    container_name: openldap
+    restart: always
+    environment:
+      LDAP_ORGANISATION: "test openldap"
+      LDAP_DOMAIN: "test.com"
+      LDAP_ADMIN_PASSWORD: "123456"
+      LDAP_CONFIG_PASSWORD: "123456"
+    volumes:
+      - /home/docker/app/openldap/data:/var/lib/ldap
+      - /home/docker/app/openldap/config:/etc/ldap/slapd.d
+    ports:
+      - '389:389'  # TCP/UDP 协议
+      - '636:636'  # SSL协议
+  # 2.安装phpldapadmin
+  phpldapadmin:
+    image: osixia/phpldapadmin:latest
+    container_name: phpldapadmin
+    restart: always
+    environment:
+      PHPLDAPADMIN_HTTPS: "false"
+      PHPLDAPADMIN_LDAP_HOSTS: openldap
+    ports:
+      - '30004:80'
+    depends_on:
+      - openldap
