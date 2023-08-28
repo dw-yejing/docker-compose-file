@@ -1,0 +1,65 @@
+version: "2.0"
+services:
+
+  mysql:
+    image: mysql:5.7
+    restart: always
+    privileged: true
+    container_name: mysql
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_DATABASE=work
+      - MYSQL_USER=worker
+      - MYSQL_PASSWORD=worker
+      - MYSQL_ROOT_PASSWORD=Dms#2023
+      - TZ=Asia/Shanghai
+    volumes:
+      - /home/docker/app/mysql/lib:/var/lib/mysql
+      - /home/docker/app/mysql/conf/my.cnf:/etc/my.cnf
+      - /home/docker/app/mysql/initdb.d:/docker-entrypoint-initdb.d/
+      - /home/docker/app/mysql/logs:/home/docker-doc/log/mysql
+
+  redis:
+    image: redis
+    restart: always
+    privileged: true
+    container_name: redis_admin
+    command: redis-server --requirepass root
+    ports:
+      - "6379:6379"
+    volumes:
+      - /home/docker/app/redis/data:/data
+      - /home/docker/app/redis/redis.conf:/etc/redis/redis.conf
+
+  minio:
+    image: minio/minio 
+    restart: always
+    privileged: true
+    container_name: minio_admin
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ACCESS_KEY: admin   
+      MINIO_SECRET_KEY: admin123
+    volumes:
+      - /home/docker/app/minio/data:/data
+      - /home/docker/app/minio/config:/data /root/.minio
+    command: server /data
+
+  nginx:
+    image: nginx
+    restart: always
+    privileged: true
+    container_name: nginx
+    volumes:
+      - "/home/docker/app/nginx/conf/nginx.conf:/etc/nginx/nginx.conf"
+      - "/home/docker/app/nginx/conf/conf.d:/etc/nginx/conf.d"
+      - "/home/docker/app/nginx/html:/usr/share/nginx/html"
+      - "/home/docker/app/nginx/log:/var/log/nginx"
+    environment:
+      TZ: Asia/Shanghai
+      LANG: en_US.UTF-8
+    ports:
+      - "80:80"

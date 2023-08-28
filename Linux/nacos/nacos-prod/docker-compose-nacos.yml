@@ -1,0 +1,17 @@
+version: '3'
+services:
+  nacos:
+    image: nacos/nacos-server:latest
+    restart: always
+    privileged: true
+    container_name: nacos
+    volumes:
+      - /home/docker/app/nacos/logs:/home/nacos/logs
+      - /home/docker/app/nacos/init.d/application.properties:/home/nacos/conf/application.properties
+    environment:
+      TZ: Asia/Shanghai
+      LANG: en_US.UTF-8
+      MODE: standalone
+    ports:
+      - "8848:8848"
+      - "9848:9848"

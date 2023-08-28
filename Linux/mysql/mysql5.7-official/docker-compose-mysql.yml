@@ -1,0 +1,21 @@
+version: "3"
+services:
+
+  mysql:
+    image: mysql:5.7
+    restart: always
+    privileged: true
+    container_name: mysql
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_DATABASE=work
+      - MYSQL_USER=worker
+      - MYSQL_PASSWORD=worker
+      - MYSQL_ROOT_PASSWORD=Dms#2023
+      - TZ=Asia/Shanghai
+    volumes:
+      - /home/docker/app/mysql/lib:/var/lib/mysql
+      - /home/docker/app/mysql/conf/my.cnf:/etc/my.cnf
+      - /home/docker/app/mysql/initdb.d:/docker-entrypoint-initdb.d/
+      - /home/docker/app/mysql/logs:/home/docker-doc/log/mysql

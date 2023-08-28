@@ -19,3 +19,4 @@ services:
       - '/home/docker/app/gitlab/logs:/var/log/gitlab'
       #将数据映射到当前目录下的data目录
       - '/home/docker/app/gitlab/data:/var/opt/gitlab'
+      - '/home/docker/app/gitlab/backup:/var/opt/gitlab/backups'
