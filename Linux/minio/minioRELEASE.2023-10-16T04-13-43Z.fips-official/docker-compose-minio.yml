@@ -2,7 +2,7 @@
 version: '3'
 services:
   minio:
-    image: minio/minio
+    image: minio/minio:minio:RELEASE.2023-10-16T04-13-43Z.fips
     restart: always
     privileged: true
     container_name: minio
