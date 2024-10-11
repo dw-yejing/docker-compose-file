@@ -64,4 +64,11 @@ docker exec -it <name of container> gitlab-rake gitlab:check SANITIZE=true
   
   ```
 
+- gitlab 删除项目后，报500错误
+
+  ```yml
+  原因: token不一致
+  解决办法: gitlab-rake cache:clear；清除存储在 Rails 应用程序中的缓存片段。清除与用户会话相关的缓存。
+  ```
+
   
