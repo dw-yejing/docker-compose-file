@@ -2,7 +2,7 @@
 
 ```shell
 # 运行
-docker-compose -f docker-compose-nginx.yml -p nginx up -d
+docker-compose -f nginx-docker-compose.yml -p nginx up -d
 
 # 进入容器
 docker exec -it nginx /bin/bash
