@@ -1,0 +1,12 @@
+version : '3.8'
+services:
+  auto_jdk:
+    container_name: auto_jdk
+    image: ae_jdk:v1 # 这里是项目jdk镜像
+    restart: always
+    privileged: true
+    ports:
+      - "9008:8080"
+    volumes:
+      - /home/prj_ae/app/auto/service:/home/aep
+    command: ["java","-jar", "auto.jar"]
