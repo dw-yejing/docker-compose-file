@@ -1,19 +1,20 @@
 # installation
 
 ```bash
-# 下载配置文件
-wget https://raw.githubusercontent.com/milvus-io/milvus/v2.2.13/configs/milvus.yaml
+# 下载docker-compose安装文件
+wget https://github.com/milvus-io/milvus/releases/download/v2.2.8/milvus-standalone-docker-compose.yml -O milvus-docker-compose.yml
+
+# 启动容器
+docker-compose up -d
 
 # 开启鉴权 修改 milvus.yaml
 common.security.authorizationEnabled: true
 
-# 下载docker-compose安装文件
-wget https://github.com/milvus-io/milvus/releases/download/v2.2.8/milvus-standalone-docker-compose.yml -O milvus-docker-compose.yml
-
 ```
 
+
 ```bash
-# 具体安装方法
+# 具体安装方法 参考: https://github.com/zilliztech/attu/blob/main/docker-compose.yml
 1. 修改端口，配置数据卷，修改minio密码和milvus配置
 2. 创建容器
 ```

@@ -8,7 +8,7 @@ docker exec -t <container name> gitlab-backup create
 docker exec -it <name of container> gitlab-ctl stop puma
 docker exec -it <name of container> gitlab-ctl stop sidekiq
 
-# Verify that the processes are all down before continuing
+# Verify that the processes are all down before continuing, 在继续之前，请确认所有进程都已关闭
 docker exec -it <name of container> gitlab-ctl status
 
 # Run the restore. NOTE: "_gitlab_backup.tar" is omitted from the name
@@ -42,9 +42,7 @@ docker exec -it <name of container> gitlab-rake gitlab:check SANITIZE=true
         - '9011:22'
   ```
 
-这里`external_url 'http://192.168.113.48:9010'`和 - '9010:9010' 和容器内外的端口要一致，否则external_url无法访问
-
-
+这里 `external_url 'http://192.168.113.48:9010'`和 - '9010:9010' 和容器内外的端口要一致，否则external_url无法访问
 
 - Docker安装gitlab 运行一段时间后报500/502
 
@@ -53,7 +51,6 @@ docker exec -it <name of container> gitlab-rake gitlab:check SANITIZE=true
   查看日志: tail -fn 100 /var/log/gitlab/gitlab-rails/production.log
   解决方法: 配置shm_size
   ```
-
   ```yml
   version: '3'
   services:
@@ -61,14 +58,11 @@ docker exec -it <name of container> gitlab-rake gitlab:check SANITIZE=true
       image: 'gitlab/gitlab-ce:latest'
       restart: always
       shm_size: 20G
-  
-  ```
 
+  ```
 - gitlab 删除项目后，报500错误
 
   ```yml
   原因: token不一致
   解决办法: gitlab-rake cache:clear；清除存储在 Rails 应用程序中的缓存片段。清除与用户会话相关的缓存。
   ```
-
-  
