@@ -9,7 +9,7 @@ services:
       - /home/docker_service/docker_app/neo4j/data:/var/lib/neo4j/data
       - /home/docker_service/docker_app/neo4j/plugins:/var/lib/neo4j/plugins
     environment:
-      - NEO4J_AUTH=Llm#2024
+      - NEO4J_AUTH=neo4j/123456
     ports:
       - "9012:7474"
       - "9013:7687"
