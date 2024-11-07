@@ -48,5 +48,8 @@ wget https://github.com/zilliztech/attu/releases/download/v2.2.8/attu-Setup-2.2.
 },{
     "Q": "关于minio端口问题",
     "A": "除了minio容器端口映射需要容器外端口，其他都是容器内API端口 9000"
+},{
+    "Q": "客户端连接不上",
+    "A": "milvus 服务器和客户端版本要一致，否则无法访问。建议在docker-compose中集成web attu" 
 }]
 ```

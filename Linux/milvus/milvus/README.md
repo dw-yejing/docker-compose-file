@@ -1,20 +1,19 @@
 # installation
 
 ```bash
-# 下载docker-compose安装文件
-wget https://github.com/milvus-io/milvus/releases/download/v2.2.8/milvus-standalone-docker-compose.yml -O milvus-docker-compose.yml
-
-# 启动容器
-docker-compose up -d
+# 下载配置文件
+wget https://raw.githubusercontent.com/milvus-io/milvus/v2.2.13/configs/milvus.yaml
 
 # 开启鉴权 修改 milvus.yaml
 common.security.authorizationEnabled: true
 
+# 下载docker-compose安装文件
+wget https://github.com/milvus-io/milvus/releases/download/v2.2.8/milvus-standalone-docker-compose.yml -O milvus-docker-compose.yml
+
 ```
 
-
 ```bash
-# 具体安装方法 参考: https://github.com/zilliztech/attu/blob/main/docker-compose.yml
+# 具体安装方法
 1. 修改端口，配置数据卷，修改minio密码和milvus配置
 2. 创建容器
 ```
@@ -49,5 +48,8 @@ wget https://github.com/zilliztech/attu/releases/download/v2.2.8/attu-Setup-2.2.
 },{
     "Q": "关于minio端口问题",
     "A": "除了minio容器端口映射需要容器外端口，其他都是容器内API端口 9000"
+},{
+    "Q": "客户端连接不上",
+    "A": "milvus 服务器和客户端版本要一致，否则无法访问。建议在docker-compose中集成web attu" 
 }]
 ```
