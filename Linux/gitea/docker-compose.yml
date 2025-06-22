@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  gitea:
+    image: gitea/gitea:1.24
+    container_name: gitea
+    restart: unless-stopped
+    environment:
+      - USER=git
+      - GITEA_CUSTOM=/data/gitea
+      - DISABLE_REGISTRATION=true
+    ports:
+      - "3002:3000"
+      - "2222:22"
+    

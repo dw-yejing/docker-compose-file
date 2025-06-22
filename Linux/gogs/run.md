@@ -19,3 +19,36 @@ docker-compose -f docker-compose.yml -p gogs up -d
 ![img_1.png](images/gogs-01.png)
 
 ![img.png](images/gogs-02.png)
+
+# 备份 & 迁移
+
+## 1. 备份代码仓库
+
+```bash
+tar -zcvf gogs-repositories.tar.gz gogs-repositories
+```
+
+## 2. 备份数据库
+
+```bash
+sudo mysqldump -h localhost -u gogs -P 3306 --no-tablespaces -p gogs> /home/tgubuntu/gogs.sql
+```
+
+## 3. 恢复
+
+```bash
+# 还原代码仓库，将gogs压缩包解压，放到对应位置
+...
+# 还原数据库
+mysql --default-character-set=utf8mb4 -u$USER -p$PASS $DATABASE <gitea-db.sql
+# 重启docker容器
+```
+
+## 4. 常见问题
+
+```bash
+# 迁移后会出现不能push的现象，报错pre-receive找不到，使用Gogs管理员账号登录Gogs，刷新hooks
+  管理面板->控制面板->管理员操作->重新同步所有仓库的pre-receive、update和post-receive钩子->执行
+
+```
+
