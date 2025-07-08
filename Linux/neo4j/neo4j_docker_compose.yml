@@ -11,5 +11,5 @@ services:
     environment:
       - NEO4J_AUTH=neo4j/123456
     ports:
-      - "9012:7474"
-      - "9013:7687"
+      - "9012:7474"  # webui 访问端口
+      - "9013:7687"  # bolt 访问端口

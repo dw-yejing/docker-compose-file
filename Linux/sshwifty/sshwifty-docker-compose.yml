@@ -1,0 +1,10 @@
+version: '3'
+services:
+  sshwifty:
+    image: niruix/sshwifty:latest
+    container_name: sshwifty
+    restart: unless-stopped
+    ports:
+      - "8182:8182"
+    environment:
+      - SSHWIFTY_SHAREDKEY=123456

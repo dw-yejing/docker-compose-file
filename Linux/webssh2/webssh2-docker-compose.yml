@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  webssh2:
+    image: psharkey/webssh2
+    container_name: webssh2
+    ports:
+      - "2222:2222"
+    restart: unless-stopped

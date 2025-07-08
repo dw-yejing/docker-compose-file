@@ -23,8 +23,8 @@ services:
       ES_JAVA_OPTS: "-Xmx512m -Xms512m"
       ELASTIC_PASSWORD: "123456" # elastic账号密码
     ports:
-      - "9200:9200"
-      - "9300:9300"
+      - "9200:9200"  # http 端口
+      - "9300:9300"  # 集群内部通信端口
     networks:
       - es
 
