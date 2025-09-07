@@ -1,3 +1,6 @@
+# Introduction
+Web ssh 客户端
+
 # 设置 sshwifty 密码
 
 可以通过指定环境变量设置密码，eg. SSHWIFTY_SHAREDKEY=Admin.ssh#2025
@@ -21,6 +24,11 @@ docker run --rm -itd \
 
 ```
 
-# 访问
+# Build
+```bash
+docker-compose -f sshwifty-docker-compoose.yml up -d
+```
+
+# Visit
 
 http://localhost:8182
